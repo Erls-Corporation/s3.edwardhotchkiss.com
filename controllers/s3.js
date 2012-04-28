@@ -24,15 +24,9 @@ var client = knox.createClient({
 module.exports = function(app) {
   
   app.get('/', function(request, response) {
-    S3.find({}, function(error, results) {
-      if (error) {
-        response.send(error);
-      } else {
-        response.render('index', {
-          locals : {
-            images : results
-          }
-        });
+    response.render('index', {
+      locals : {
+        images : S3.findAll()
       }
     });
   });

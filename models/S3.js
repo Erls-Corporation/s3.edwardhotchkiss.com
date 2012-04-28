@@ -1,22 +1,21 @@
 
-/*!
-  S3
+/**
+ * S3 Model
  */
 
 var mongoose = require('mongoose')
   , Schema = mongoose.Schema
-  , ObjectId = Schema.ObjectId
-  , S3
+  , ObjectId = Schema.ObjectId;
 
 var S3Schema = new Schema({
-  id          : ObjectId ,
-  hash        : String,
-  url 		  : String,
-  title       : String,
-  description : String,
+  id          : { type : ObjectId },
+  hash        : { type : String },
+  url 		    : { type : String },
+  title       : { type : String },
+  description : { type : String },
   created_at  : { type : Date, default: Date.now }
 });
 
-module.exports = S3 = mongoose.model('S3', S3Schema);
+var S3 = module.exports = mongoose.model('S3', S3Schema);
 
 /* EOF */

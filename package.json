@@ -1,17 +1,25 @@
 {
-  "author":"Edward Hotchkiss <edwardhotchkiss@me.com>",
-  "name":"demo",
-  "description":"Node.JS MongoDB S3 Demo",
-  "private":true,
-  "version":"0.0.1",
-  "engines":{
-    "node": ">= 0.6.15"
+  "author": "Edward Hotchkiss <edwardhotchkiss@me.com>",
+  "name": "files.edwardhotchkiss.com",
+  "description": "files.edwardhotchkiss.com",
+  "private": true,
+  "version": "0.0.1",
+  "engines": {
+    "node": ">= 0.6.0"
   },
-  "dependencies":{
-    "ejs":"0.7.1",
-    "express":"2.5.9",
-    "mongoose":"2.6.0",
-    "formidable":"1.0.9",
-    "knox":"0.0.9"
+  "dependencies": {
+    "ejs": "0.7.1",
+    "express": "2.5.9",
+    "mongoose": "2.6.0",
+    "formidable": "1.0.9",
+    "knox": "0.0.9",
+    "node-uuid":"1.3.3"
+  },
+  "subdomain": "s3",
+  "domains": [
+    "files.edwardhotchkiss.com"
+  ],
+  "scripts": {
+    "start": "app.js"
   }
 }

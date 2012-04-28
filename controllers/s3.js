@@ -1,42 +1,44 @@
 
 var fs = require('fs')
-    , util = require('util')
-    , path = require('path')
-    , knox = require('knox')
-    , formidable = require('formidable')
-    , S3 = require('../models/S3');
+  , util = require('util')
+  , path = require('path')
+  , knox = require('knox')
+  , uuid = require('node-uuid')
+  , formidable = require('formidable')
+  , S3 = require('../models/S3');
 
-/*!
-  image url hasher
- */
-
-function hasher(){
-  var AUID = [],
-      CHARS = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-  for (var i = 0; i < 6; i++) {
-    AUID.push(CHARS[Math.floor(Math.random()*62)]);
-  }
-  return AUID.join('');
-};
-
-/*!
-  AWS Client
+/**
+ * AWS Client
  */
 
 var client = knox.createClient({
-  key: 'AKIAJW5OBAPB6ZYIED2A'
-  , secret: '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'
-  , bucket: 'edwardhhotchkiss'
+  key:    'AKIAJW5OBAPB6ZYIED2A',
+  secret: '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',
+  bucket: 'edwardhhotchkiss'
 });
 
-/*!
-  routes
+/**
+ * Routes
  */
 
 module.exports = function(app) {
   
   app.get('/', function(request, response) {
-    response.render('index');
+    S3.find({}, function(error, results) {
+      if (error) {
+        throw new Error(errror);
+      } else {
+        response.render('index', {
+          locals : {
+            images : results
+          }
+        });
+      }
+    });
+  });
+
+  app.get('/upload', function(request, response) {
+    response.render('upload');
   });
 
   app.post('/upload', function(request, response) {
@@ -49,7 +51,7 @@ module.exports = function(app) {
     form.uploadDir = 'tmp';
     form.on('fileBegin', function(name, file) {
       ext = file.path.split('.')[1];
-      hash = hasher();
+      hash = uuid.v1();
       file.path = form.uploadDir + '/' + hash;
     });
     form.on('field', function(field, value) {
@@ -70,7 +72,7 @@ module.exports = function(app) {
           });
           image.save(function(error, result) {
             if (error) {
-              console.error(error);
+              throw new Error(error);
             } else {
               response.redirect('http://' + request.headers.host + '/' + hash);
             };

@@ -3,18 +3,20 @@ var express = require('express')
   , mongoose = require('mongoose')
   , app = express.createServer();
 
-/*!
-  connect to mongo
+/**
+ * connect to mongo
  */
 
-mongoose.connect(process.env.MONGO_DB);
+var MONGO_DB = 'mongodb://nodejitsu:4fa7cfa95d15248bc28946e40f40d138@staff.mongohq.com:10069/nodejitsudb446502278283';
+
+mongoose.connect(MONGO_DB);
 
 mongoose.connection.on('error', function(error) {
   throw new Error(error);  
 });
 
-/*!
-  Setup ExpressJS
+/**
+ * Setup ExpressJS
  */
 
 app.configure(function() {
@@ -23,14 +25,14 @@ app.configure(function() {
   app.set('views', __dirname + '/views');
 });
 
-/*!
-  routes
+/**
+ * Routes
  */
 
 require('./controllers/s3')(app);
 
-/*!
-  ExpressJS, Listen on <port>
+/**
+ * ExpressJS, Listen on <port>
  */
 
 app.listen(8000, function() {

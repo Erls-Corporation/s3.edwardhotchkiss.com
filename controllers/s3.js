@@ -26,7 +26,7 @@ module.exports = function(app) {
   app.get('/', function(request, response) {
     S3.find({}, function(error, results) {
       if (error) {
-        throw new Error(errror);
+        response.send(error);
       } else {
         response.render('index', {
           locals : {
@@ -77,7 +77,7 @@ module.exports = function(app) {
           });
           image.save(function(error, result) {
             if (error) {
-              throw new Error(error);
+              response.send(error);
             } else {
               response.redirect('/');
             };
@@ -92,7 +92,7 @@ module.exports = function(app) {
   app.get('/:hash', function(request, response) {
     S3.findOne({ hash : request.params.hash }, function(error, result) {
       if (error) {
-        throw new Error(error);
+        response.send(error);
       } else {
         client.get(result.fileName).on('response', function(_response){
           if (_response.statusCode === 200) {

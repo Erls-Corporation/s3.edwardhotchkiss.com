@@ -24,9 +24,9 @@ function hasher(){
  */
 
 var client = knox.createClient({
-  key: 'AKIAIQK5HEJJVK6HGTAA'
-  , secret: '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'
-  , bucket: 'unfolio'
+  key: 'AKIAJW5OBAPB6ZYIED2A'
+  , secret: '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'
+  , bucket: 'edwardhhotchkiss'
 });
 
 /*!

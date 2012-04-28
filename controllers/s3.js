@@ -44,6 +44,7 @@ module.exports = function(app) {
   app.post('/upload', function(request, response) {
     var ext
       , hash
+      , fileName
       , form = new formidable.IncomingForm()
       , files = []
       , fields = [];
@@ -52,29 +53,33 @@ module.exports = function(app) {
     form.on('fileBegin', function(name, file) {
       ext = file.path.split('.')[1];
       hash = uuid.v1();
-      file.path = form.uploadDir + '/' + hash;
+      fileName = hash + '.' + ext.toLowerCase();
+      file.path = form.uploadDir + '/' + fileName;
     });
     form.on('field', function(field, value) {
       fields.push([field, value]);
     }).on('file', function(field, file) {
       files.push([field, file]);
     }).on('end', function() {
-      fs.readFile(__dirname + '/../tmp/' + hash, function(error, buf) {
-        var req = client.put('/images/' + hash + '.png', {
+      console.log('file:', __dirname + '/../tmp/' + fileName);
+      fs.readFile(__dirname + '/../tmp/' + fileName, function(error, buf) {
+        var req = client.put(fileName, {
           'x-amz-acl': 'private',
           'Content-Length': buf.length,
-          'Content-Type': 'image/png'
+          'Content-Type': 'image/' + ext
         });
+        fs.unlinkSync(__dirname + '/../tmp/' + fileName);
         req.on('response', function(res){
           var image = new S3({
             hash : hash,
-            url : req.url
+            url  : req.url,
+            fileName : fileName
           });
           image.save(function(error, result) {
             if (error) {
               throw new Error(error);
             } else {
-              response.redirect('http://' + request.headers.host + '/' + hash);
+              response.redirect('/');
             };
           })
         });
@@ -87,9 +92,9 @@ module.exports = function(app) {
   app.get('/:hash', function(request, response) {
     S3.findOne({ hash : request.params.hash }, function(error, result) {
       if (error) {
-        console.error(error);
+        throw new Error(error);
       } else {
-        client.get('/images/' + request.params.hash + '.png').on('response', function(_response){
+        client.get(result.fileName).on('response', function(_response){
           if (_response.statusCode === 200) {
             util.pump(_response, response);
           } else {

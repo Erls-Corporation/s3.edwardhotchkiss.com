@@ -1,0 +1,206 @@
+
+body {
+  background: @bgColor url(../img/bg.png) 0 0 repeat;
+  color: #000;
+  font-family: @defaultFont;
+  font-size: @defaultFontSize;
+  line-height: 1.5;
+  margin-bottom: 100px;
+}
+
+@font-face {
+  font-family: 'PacificoEmbedded';
+  src: url(../fonts/Pacifico.ttf);
+}
+
+@font-face {
+  font-family: 'PicoBlackEmbedded';
+  src: url(../fonts/pico-black.ttf);
+}
+
+.holder {
+  .clearfix(); 
+}
+
+h1, h2, h3, h4 {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 32px;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+h4 {
+  font-size: 18px;
+}
+
+a {
+  text-decoration: none;
+  color: @linkColor;
+  border-bottom: 1px solid @linkColor;
+}
+
+span.strong {
+  font-weight: bold;
+}
+
+p, blockquote {
+  margin: 0 0 18px 0;
+  font-family: @defaultFont;
+  font-size: @defaultFontSize;
+  line-height: 1.5;
+}
+
+span.underline {
+  border-bottom: 1px solid #000;
+}
+
+#container {
+  margin: 0 auto 0 auto;
+  position: relative;
+  width: @siteWidth;
+  margin-top: 50px;
+}
+
+header {
+  .clearfix();
+  position: relative;
+  margin: 0 auto 0 auto;
+  position: relative;
+  width: @siteWidth;
+  margin-top: 20px;
+}
+
+header h1 {
+  float: left;
+  width: 300px;
+  position: relative;
+}
+
+header h1 a {
+  font-family: 'PacificoEmbedded';
+  font-size: 48px;  
+  font-weight: normal;
+  text-shadow: 0 1px 1px @white;
+  color: @logoColor;
+  border: none;
+  .transition(all 0.3s ease-in-out 0s);
+}
+
+header h1 a:hover {
+  color: #a3a3a3;
+}
+
+#header-right {
+  position: relative;
+  width: 160px;
+  float: right;
+  padding-top: 25px;
+}
+
+#header-right ul {
+  .clearfix();  
+}
+
+#header-right ul li {
+  width: auto;
+  float: left;
+  position: relative;
+  margin-right: 8px;
+}
+
+blockquote {
+  font-style: italic;
+}
+
+#connect {
+  padding-bottom: 25px;
+}
+
+#connect ul {
+  .clearfix();
+}
+
+#connect ul li {
+  width: auto;
+  float: left;
+  position: relative;
+  margin-right: 10px;
+}
+
+.user, .admin {
+  @shadow: 0 1px 6px #bbb;
+  .border-radius(0);
+  .box-shadow(@shadow);
+  width: 315px;
+  position: relative;
+  margin: 0 auto 0 auto;
+  background: none repeat scroll 0 0 #fff;
+  padding: 24px 24px 10px 24px;
+}
+
+.entrance {
+  margin-top: 100px;
+}
+
+.entrance h1 {
+  color: #666;
+  text-shadow: 0 1px 2px #fff;
+}
+
+#forgot-password {
+  padding-top: 10px;
+  font-size: 11px;
+  position: relative;
+  float: left;
+}
+
+#login-btn {
+  position: relative;
+  float: right;
+  width: auto;
+}
+
+.user-larger {
+  width: 450px;
+}
+
+.error {
+  width: 315px;
+  position: relative;
+  margin: 0 auto 0 auto;
+}
+
+.error h1 {
+  text-align: center;
+}
+
+#flash {
+  display: none;
+}
+
+.user a {
+  border-bottom: none;  
+}
+
+.user label {
+  font-weight: bold;
+}
+
+.user label small {
+  font-weight: normal;
+  margin-left: 10px;
+}
+
+.user p input[type=submit] {
+  width: auto;
+  position: relative;
+  float: right;
+}
+
+/* EOF */

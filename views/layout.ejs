@@ -1,12 +1,34 @@
-<html>
-  <head>
-    <title>Files</title>
-    <link rel="stylesheet" href="/css/style.css" />
-  </head>
-  <body>
-    <div id="container">
-      <%- body %>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Files</title>
+  <meta name="author" content="" />
+  <meta name="title" content="" />
+  <meta name="description" content="" />
+  <meta property="og:title" content="" />
+  <meta property="og:image" content="" />
+  <meta property="og:site_name" content="" />
+  <meta property="og:description" content="" />
+  <meta property="og:url" content=""/>
+  <link rel="stylesheet" href="/css/main.min.css">
+</head>
+<body>
+  <div id="flash"></div>
+  <div id="notify"><p></p></div>
+  <nav>
+    <div class="nav-inner">
+      <ul class="nav-main">
+        <li class="active"><a href="/" title="Home">Home</a></li>
+      </ul>
     </div>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  </body>
+  </nav>
+  <div id="container"> 
+    <%- body %>
+  </div>
+  <script src="/js/main.min.js"></script>
+  <script type="text/javascript">
+    $('#notify').notify();
+  </script>
+</body>
 </html>

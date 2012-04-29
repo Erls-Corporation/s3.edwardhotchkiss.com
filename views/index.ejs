@@ -3,7 +3,7 @@
   <h2>Files</h2>
   <ul>
     <% images.map(function(image) { %>
-      <li><a href="/<%= image.hash %>"><%= image.hash %></a></li>
+      <li><a href="<%= image.url %>"><img src="<%= image.url %>" /></a></li>
     <% }); %>
   </ul>
 </div>

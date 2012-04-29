@@ -58,7 +58,6 @@ module.exports = function(app) {
       console.log('file:', __dirname + '/../tmp/' + fileName);
       fs.readFile(__dirname + '/../tmp/' + fileName, function(error, buf) {
         var req = client.put(fileName, {
-          'x-amz-acl': 'private',
           'Content-Length': buf.length,
           'Content-Type': 'image/' + ext
         });

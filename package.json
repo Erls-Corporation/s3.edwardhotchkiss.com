@@ -1,9 +1,9 @@
 {
   "author": "Edward Hotchkiss <edwardhotchkiss@me.com>",
-  "name": "files.edwardhotchkiss.com",
-  "description": "files.edwardhotchkiss.com",
+  "name": "s3.edwardhotchkiss.com",
+  "description": "s3.edwardhotchkiss.com",
   "private": true,
-  "version": "0.0.1-5",
+  "version": "0.0.1",
   "engines": {
     "node": ">= 0.6.0"
   },
@@ -18,7 +18,7 @@
   },
   "subdomain": "ehhs3",
   "domains": [
-    "files.edwardhotchkiss.com"
+    "s3.edwardhotchkiss.com"
   ],
   "scripts": {
     "start": "application.js"

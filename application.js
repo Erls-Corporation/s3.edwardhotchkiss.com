@@ -6,7 +6,7 @@ var express = require('express')
  * connect to mongo
  */
 
-var MONGO_DB = 'mongodb://nodejitsu:4fa7cfa95d15248bc28946e40f40d138@staff.mongohq.com:10069/nodejitsudb446502278283';
+var MONGO_DB = process.env.MONGO_DB;
 
 mongoose.connect(MONGO_DB);
 

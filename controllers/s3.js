@@ -1,4 +1,3 @@
-
 var fs = require('fs')
   , util = require('util')
   , path = require('path')
@@ -12,9 +11,9 @@ var fs = require('fs')
  */
 
 var client = knox.createClient({
-  key:    'AKIAJW5OBAPB6ZYIED2A',
-  secret: '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',
-  bucket: 'edwardhhotchkiss'
+  key:    process.env.AWS_KEY,
+  secret: process.env.AWS_KEY_SECRET,
+  bucket: process.env.AWS_BUCKET
 });
 
 /**
